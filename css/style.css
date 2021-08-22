@@ -67,7 +67,6 @@ body{
 .home-image path{
     opacity: 0;
     cursor: pointer;
-
 }
 .home-image path:hover{
     opacity: 1;
@@ -117,5 +116,75 @@ path.current-floor{
     color: #fff;
     border:none;
     padding: 16px 36px;
+    cursor: pointer;
+}
+
+.choose-flat-dialog-wrapper{
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.choose-flat-dialog-wrapper__opened{
+    display: flex;
+}
+
+.choose-flat-dialog{
+    display: flex;
+    width: fit-content;
+    margin: auto;
+}
+
+.choose-flat-dialog__title{
+    font-size: 24px;
+    line-height: 29px;
+}
+
+.choose-flat-dialog__image{
+    background: #EBEBEB;
+}
+
+.choose-flat-dialog__image path{
+    opacity: 0;
+    cursor: pointer;
+}
+.choose-flat-dialog__image path:hover, .choose-flat-dialog__image .flat__active{
+    opacity: 1;
+}
+
+.choose-flat-dialog__list-wrapper{
+    flex-grow: 1;
+    background: #fff;
+    color: #635854;
+}
+
+.choose-flat-dialog__list{
+    list-style: none;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+}
+
+.choose-flat-dialog__list-item:hover{
+    cursor: pointer;
+}
+
+.choose-flat-dialog__list-item_active, .choose-flat-dialog__list-item:hover{
+    text-decoration: underline;
+    color: #3596F5;
+}
+
+.choose-flat-dialog__note{
+    font-style: italic;
+}
+
+.choose-flat-dialog__close{
+    background: #fff;
+}
+.choose-flat-dialog__close > svg:hover{
     cursor: pointer;
 }
