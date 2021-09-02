@@ -1,9 +1,9 @@
 $(document).ready(function () {
-    var currentFloor=02; //текущий этаж
-    var counterUp=$(".counter-up");//каждый отдельный класс в svg
-    var counterDown=$(".counter-down");//увеличение этажа
+    var currentFloor=2; //текущий этаж
+    var counterUp=$(".counter-up");//увеличение этажа 
+    var counterDown=$(".counter-down");//уменьшение этажа
     var viewFlats=$(".view-flats");//Смотреть квартиры на этаже
-    var floorPath = $(".home-image path");//уменьгение этажа
+    var floorPath = $(".home-image path");//каждый отдельный класс в svg 
     var viewFlatsDialogContainer=$(".choose-flat-dialog-wrapper");
     var currentFlat = 40;
     var flatPath = $(".choose-flat-dialog__image path");
@@ -39,8 +39,27 @@ $(document).ready(function () {
     });
 
     viewFlats.on("click", function() {
+        window.scrollTo(0,0);
+        $("body").addClass("body__overflow-hidden");
         viewFlatsDialogContainer.addClass("choose-flat-dialog-wrapper__opened");
         viewFlatsDialogContainer[0].dataset.floor = currentFloor;
+        $(".choose-flat-dialog__floor-number").text("Этаж "+currentFloor);
+
+    });
+
+    flatPath.on("mouseover", function(){
+        flatPath.removeClass("flat__active");
+        viewFlatsDialogList.children().removeClass("choose-flat-dialog__list-item_active");
+        currentFlat=$(this).attr('data-flat');
+        $(`ul [data-flat=${currentFlat}]`).addClass("choose-flat-dialog__list-item_active");
+        $(this).addClass("flat__active");
+    });
+
+    viewFlatsDialogList.on("mouseover", function(event){
+        viewFlatsDialogList.children().removeClass("choose-flat-dialog__list-item_active");
+        flatPath.removeClass("flat__active");
+        currentFlat = event.target.dataset.flat;
+        $(`svg [data-flat=${currentFlat}]`).addClass("flat__active");
     });
 
     flatPath.on("click", function() {
@@ -62,5 +81,6 @@ $(document).ready(function () {
 
     viewFlatsDialogClose.on("click", function() {
         viewFlatsDialogContainer.removeClass("choose-flat-dialog-wrapper__opened");
+        $("body").removeClass("body__overflow-hidden");
     });
 });
